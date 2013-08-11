@@ -1,0 +1,79 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="kanboxwp.SetupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot 是包含所有页面内容的根网格-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel 包含应用程序的名称和页标题-->
+
+        <!--ContentPanel - 在此处放置其他内容-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <phone:Pivot HorizontalAlignment="Left" Height="768" VerticalAlignment="Top" Width="456">
+                <!--<phone:PivotItem CacheMode="{x:Null}" Header="常规">
+                    
+                </phone:PivotItem>-->
+                <phone:PivotItem x:Name="piAccount" CacheMode="{x:Null}" Header="账户" Loaded="piAccount_Loaded">
+                    <StackPanel>
+                        <TextBlock Text="存储空间："/>
+                        <ProgressBar x:Name="pbStorageUsage" Height="34" BorderThickness="1" Padding="0" MinHeight="10" Foreground="#FF009BF0" />
+                        <TextBlock x:Name="tbStorageUsage"/>
+                        <TextBlock Text="登录账户：" Margin="0,30,0,0"/>
+                        <TextBlock x:Name="tbEmail"/>
+                        <HyperlinkButton x:Name="hbLogout" Content="退出登录" Margin="0,20,0,0" Click="hbLogout_Click" />
+                    </StackPanel>
+                </phone:PivotItem>
+                <phone:PivotItem x:Name="piAbout" CacheMode="{x:Null}" Header="关于">
+                    <StackPanel>
+                        <TextBlock Margin="12,0">
+                    	<Run Text="版本 0.1"/>
+                    	<LineBreak/>
+                        <LineBreak/>
+                        <Run Text="声明："/>
+                        <LineBreak/>
+                    	<Run Text="本客户端是酷盘会员制作的开源版本，目的是" />
+                    	<LineBreak/>
+                    	<Run Text="在官方推出Windows Phone 8版本客户端之前"/>
+                    	<LineBreak/>
+                    	<Run Text="可以作为有益的补充，为广大酷盘会员提供便"/>
+                    	<LineBreak/>
+                        <Run Text="利。"/>
+                    	<LineBreak/>
+                        <LineBreak/>
+                    	<Run Text="由于是业余制作，加上一直写的是Java程序，"/>
+                    	<LineBreak/>
+                        <Run Text="没有C#经验，难免有疏漏不足，甚至错误的地"/>
+                        <LineBreak/>
+                        <Run Text="方，请大家多多包涵指正。欢迎意见和建议，"/>
+                        <LineBreak />
+                    	<Run Text="请不要随意贬低或攻击。"/>
+                        <LineBreak/>
+                        <LineBreak/>
+                        <Run Text="本客户端在GitHub开放全部源代码，大家可以" />
+                        <LineBreak />
+                        <Run Text="完全放心使用，本程序不会隐含任何恶意行为。" />
+                        <LineBreak />
+                        </TextBlock>
+                        <HyperlinkButton Content="https://github.com/jarvisji/kanboxwp" HorizontalAlignment="Left" VerticalAlignment="Top" Width="436" HorizontalContentAlignment="Left"/>
+                    </StackPanel>
+                </phone:PivotItem>
+            </phone:Pivot>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

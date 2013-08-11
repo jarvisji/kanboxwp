@@ -1,0 +1,25 @@
+﻿<local:MainViewModel 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"       
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:kanboxwp">
+
+    <local:MainViewModel.MyKanboxItems>
+        <local:ItemViewModel FileName="手机相册" FileInfo="2013/8/7 15:58:01" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="share" FileInfo="2013/8/6 12:17:34" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="changan.zip" FileInfo="105579928 2013/8/6 10:58:34" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="1996级经济信息技术通讯录.xls" FileInfo="17920 2013/8/6 10:17:19" FileIcon="Images/file.excel.64.png" />
+    </local:MainViewModel.MyKanboxItems>
+    <local:MainViewModel.RecentItems>
+        <local:ItemViewModel FileName="recent 1" FileInfo="2013/8/7 15:58:01" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="recent 2" FileInfo="2013/8/6 12:17:34" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="recent 3" FileInfo="105579928 2013/8/6 10:58:34" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="recent 4" FileInfo="17920 2013/8/6 10:17:19" FileIcon="Images/file.excel.64.png" />
+    </local:MainViewModel.RecentItems>
+    <local:MainViewModel.FolderItems>
+        <local:ItemViewModel FileName="recent 1" FileInfo="2013/8/7 15:58:01" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="recent 2" FileInfo="2013/8/6 12:17:34" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="recent 3" FileInfo="105579928 2013/8/6 10:58:34" FileIcon="Images/file.folder.64.png" />
+        <local:ItemViewModel FileName="recent 4" FileInfo="17920 2013/8/6 10:17:19" FileIcon="Images/file.excel.64.png" />
+    </local:MainViewModel.FolderItems>
+
+</local:MainViewModel>
