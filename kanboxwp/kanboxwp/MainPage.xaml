@@ -36,8 +36,8 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </phone:PivotItem>
-            <phone:PivotItem x:Name="piMyShare" CacheMode="{x:Null}" Header="最近文件" Margin="12,28,0,0">
-                <ListBox x:Name="lbMyShare" Margin="0" ItemsSource="{Binding RecentItems}" SelectionChanged="lbMyShare_SelectionChanged">
+            <phone:PivotItem x:Name="piRecent" CacheMode="{x:Null}" Header="最近文件" Margin="12,28,0,0">
+                <ListBox x:Name="lbRecent" Margin="0" ItemsSource="{Binding RecentItems}" SelectionChanged="lbRecent_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0" Width="413" Orientation="Horizontal">

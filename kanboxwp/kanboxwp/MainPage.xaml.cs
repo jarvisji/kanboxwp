@@ -80,7 +80,7 @@ namespace kanboxwp
                 if (contentInfo.IsFolder)
                 {
                     //App.ViewModel.LoadMyKanboxFiles(contentInfo.FullPath);
-                    NavigationService.Navigate(new Uri("/FolderViewPage.xaml?path="+contentInfo.FullPath, UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/FolderViewPage.xaml?path=" + contentInfo.FullPath, UriKind.Relative));
                 }
                 else
                 {
@@ -101,36 +101,6 @@ namespace kanboxwp
             }
         }
 
-        // handle client event of back key on phone.
-        //protected override void OnBackKeyPress(CancelEventArgs e)
-        //{
-        //    if (curFileListSelection != null && !"/".Equals(curFileListSelection.ContentInfo.FullPath))
-        //    {
-        //        string currentPath = curFileListSelection.ContentInfo.FullPath;
-        //        if (!curFileListSelection.ContentInfo.IsFolder)
-        //        {
-        //            currentPath = currentPath.Substring(0, currentPath.LastIndexOf("/"));
-        //        }
-        //        string parentPath = FileUtil.getParentPath(currentPath);
-        //        KbListInfo cachedListInfo;
-        //        if (App.ViewModel.PathListInfoDict.TryGetValue(parentPath, out cachedListInfo))
-        //        {
-        //            e.Cancel = true;
-        //            ItemViewModel mockSelection = new ItemViewModel();
-        //            KbListContentInfo mockContent = new KbListContentInfo();
-        //            mockContent.FullPath = parentPath;
-        //            mockContent.IsFolder = true;
-        //            mockSelection.ContentInfo = mockContent;
-        //            curFileListSelection = mockSelection;
-        //            App.ViewModel.ShowData(cachedListInfo);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        App.Current.Terminate();
-        //    }
-        //}
-
         // Upload file to server
         private void ibUpload_Click(object sender, EventArgs e)
         {
@@ -143,11 +113,6 @@ namespace kanboxwp
             App.ViewModel.LoadMyKanboxFiles();
         }
 
-        private void lbMyShare_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void lbMyKanbox_Loaded(object sender, RoutedEventArgs e)
         {
             lbMyKanbox.SelectedItem = null;
@@ -156,6 +121,20 @@ namespace kanboxwp
         private void ipSetup_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/SetupPage.xaml", UriKind.Relative));
+        }
+
+        private async void lbRecent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                ItemViewModel ivmSelection = (ItemViewModel)e.AddedItems[0];
+                StorageFile localfile = await FileUtil.GetFileInAppDataFolder(ivmSelection.ContentInfo.FullPath);
+                if (localfile == null)
+                {
+                    localfile = await App.ViewModel.DownloadFile(ivmSelection.ContentInfo);
+                }
+                await Windows.System.Launcher.LaunchFileAsync(localfile);
+            }
         }
     }
 }
