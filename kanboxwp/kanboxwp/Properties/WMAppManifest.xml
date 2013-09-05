@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="zh-CN" />
-  <App xmlns="" ProductID="{e5e46b7d-4878-4980-8517-727c19613fc9}" Title="kanboxwp" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="kanboxwp author" Description="Sample description" Publisher="kanboxwp" PublisherID="{406fa81b-7ed6-43fe-9a32-5ecfc92e59ac}">
+  <App xmlns="" ProductID="{e5e46b7d-4878-4980-8517-727c19613fc9}" Title="kanboxwp" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="kanboxwp author" Description="Sample description" Publisher="kanboxwp" PublisherID="{00000000-0000-0000-0000-000000000000}">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_MICROPHONE" />
