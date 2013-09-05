@@ -177,7 +177,7 @@ namespace kanboxwp.Utils
             {
                 throw new ArgumentException("Invalid file name (null).");
             }
-            StorageFile localFile = await CreateFileInFolders(fileName);
+            StorageFile localFile = await CreateFileInAppDataFolder(fileName);
             using (var localFileStream = await localFile.OpenStreamForWriteAsync())
             {
                 await inputStream.CopyToAsync(localFileStream);
@@ -185,7 +185,7 @@ namespace kanboxwp.Utils
             return localFile;
         }
 
-        private static async Task<StorageFile> CreateFileInFolders(string fileName)
+        private static async Task<StorageFile> CreateFileInAppDataFolder(string fileName)
         {
             int lastPathSeperatorIndex = fileName.LastIndexOf("/");
             string fPath = null;
@@ -207,6 +207,35 @@ namespace kanboxwp.Utils
             }
             StorageFile localFile = await localFolder.CreateFileAsync(fName, CreationCollisionOption.ReplaceExisting);
             return localFile;
+        }
+
+        /// <summary>
+        /// Get StorageFile object from local application data folder.
+        /// </summary>
+        /// <param name="fileFullName">File name with full path.</param>
+        /// <returns></returns>
+        public static async Task<StorageFile >GetFileInAppDataFolder(string fileFullName)
+        {
+            int lastPathSeperatorIndex = fileFullName.LastIndexOf("/");
+            string fPath = null;
+            string fName = fileFullName;
+            if (lastPathSeperatorIndex >= 0)
+            {
+                fPath = fileFullName.Substring(0, lastPathSeperatorIndex);
+                fName = fileFullName.Substring(lastPathSeperatorIndex + 1);
+            }
+
+            StorageFolder localFolder = ApplicationData.Current.LocalFolder;
+            string[] pathes = fPath.Split('/');
+            for (int i = 0; i < pathes.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(pathes[i].Trim()))
+                {
+                    localFolder = await localFolder.GetFolderAsync(pathes[i]);
+                }
+            }
+            StorageFile sfile = await localFolder.GetFileAsync(fName);
+            return sfile;
         }
 
         /// <summary>
