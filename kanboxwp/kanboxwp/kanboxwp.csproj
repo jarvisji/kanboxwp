@@ -113,9 +113,6 @@
     <Compile Include="Entities\KbListInfo.cs" />
     <Compile Include="Entities\KbStatusInfo.cs" />
     <Compile Include="Entities\KbToken.cs" />
-    <Compile Include="ExampleMainPage.xaml.cs">
-      <DependentUpon>ExampleMainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AuthPage.xaml.cs">
       <DependentUpon>AuthPage.xaml</DependentUpon>
     </Compile>
@@ -139,10 +136,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="ExampleMainPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <DesignData Include="SampleData\MainViewModelSampleData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -178,6 +171,7 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\AppLogo.png" />
     <Content Include="Images\file.excel.64.png" />
     <Content Include="Images\file.folder.64.png" />
     <Content Include="Images\file.image.64.png" />
