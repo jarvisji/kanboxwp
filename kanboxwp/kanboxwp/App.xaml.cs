@@ -130,6 +130,7 @@ namespace kanboxwp
         // 出现未处理的异常时执行的代码
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            MessageBox.Show(e.ExceptionObject.Message);
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // 出现未处理的异常；强行进入调试器
