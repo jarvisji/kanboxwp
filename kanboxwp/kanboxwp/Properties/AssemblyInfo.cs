@@ -7,9 +7,9 @@ using System.Resources;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("kanboxwp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Kanbox client for Windows Phone 8")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jarvis Ji")]
 [assembly: AssemblyProduct("kanboxwp")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
