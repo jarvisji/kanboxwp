@@ -62,7 +62,7 @@ namespace kanboxwp
         /// </summary>
         public async void LoadMyKanboxFiles()
         {
-            if (CheckToken())
+            if (await CheckToken())
             {
                 KbListInfo lastListInfo;
                 // if local cache has data, show first at once, then pull from server to refresh.
@@ -84,7 +84,7 @@ namespace kanboxwp
         /// <param name="path"></param>
         public async void LoadFolderFiles(string path)
         {
-            if (CheckToken())
+            if (await CheckToken())
             {
                 ClearFolderFiles();
                 KbListInfo lastListInfo;
@@ -137,10 +137,10 @@ namespace kanboxwp
 
         public async Task<KbAccountInfo> GetAccountInfo()
         {
-            CheckToken();
+            await CheckToken();
             return await KBApiUtil.GetAccountInfo(token);
         }
-        
+
 
         // Get icon file path for individual extend file name.
         private string getFileIcon(KbListContentInfo contentInfo)
@@ -168,7 +168,7 @@ namespace kanboxwp
         }
 
         // Make sure get token and it hasn't expired.
-        private bool CheckToken()
+        private async Task<bool> CheckToken()
         {
             if (token == null)
             {
@@ -179,17 +179,18 @@ namespace kanboxwp
                 (App.Current as App).RootFrame.Navigate(new Uri("/AuthPage.xaml", UriKind.Relative));
                 return false;
             }
-            RefreshTokenIfNeed();
+            await RefreshTokenIfNeed();
             return true;
         }
 
-        private async void RefreshTokenIfNeed()
+        private async Task<bool> RefreshTokenIfNeed()
         {
             if (IsExpired(token))
             {
                 token = await KBApiUtil.RefreshTokenAsync(token.RefreshToken);
                 FileUtil.writeTokenFile(token);
             }
+            return true;
         }
 
         /// <summary>
@@ -200,12 +201,12 @@ namespace kanboxwp
         public async Task<StorageFile> DownloadFile(KbListContentInfo contentInfo)
         {
             StorageFile sfile = null;
-            if (CheckToken())
+            if (await CheckToken())
             {
                 sfile = await KBApiUtil.DownloadFileAsync(contentInfo.FullPath, token);
                 if (!recentViewedFiles.Exists(o => o.FullPath.Equals(contentInfo.FullPath)))
                 {
-                    recentViewedFiles.Add(contentInfo);
+                    recentViewedFiles.Insert(0, contentInfo);
                 }
             }
             return sfile;
@@ -228,6 +229,10 @@ namespace kanboxwp
 
             if (KBApiUtil.KB_STATUS_OK.Equals(newListInfo.Status))
             {
+                if (cachedPathListInfoDict.ContainsKey(path))
+                {
+                    cachedPathListInfoDict.Remove(path);
+                }
                 cachedPathListInfoDict.Add(path, newListInfo);
                 return newListInfo;
             }
