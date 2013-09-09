@@ -179,7 +179,7 @@ namespace kanboxwp.Utils
                 url += "?hash=" + hashcode;
             }
             string received = await doGetAsync(url, GetAuthorizationHeader(token));
-            KbListInfo listInfo = JsonConvert.DeserializeObject<KbListInfo>(received);
+            KbListInfo listInfo = await JsonConvert.DeserializeObjectAsync<KbListInfo>(received);
             return listInfo;
         }
 
@@ -191,7 +191,7 @@ namespace kanboxwp.Utils
         public static async Task<KbAccountInfo> GetAccountInfo(KbToken token)
         {
             string received = await doGetAsync(InfoUrl, GetAuthorizationHeader(token));
-            KbAccountInfo accountInfo = JsonConvert.DeserializeObject<KbAccountInfo>(received);
+            KbAccountInfo accountInfo = await JsonConvert.DeserializeObjectAsync<KbAccountInfo>(received);
             return accountInfo;
         }
 
@@ -232,7 +232,7 @@ namespace kanboxwp.Utils
                 redirect_uri = HttpUtility.UrlEncode(KB_REDIRECTURL_KANBOXWP_DUMMYPAGE)
             });
             string received = await doPostAsync(TokenUrl, postdata);
-            KbToken token = JsonConvert.DeserializeObject<KbToken>(received);
+            KbToken token = await JsonConvert.DeserializeObjectAsync<KbToken>(received);
             UpdateExpiresTime(token);
             return token;
         }
@@ -252,7 +252,7 @@ namespace kanboxwp.Utils
                 refresh_token = HttpUtility.UrlEncode(refreshToken)
             });
             string received = await doPostAsync(TokenUrl, data);
-            KbToken token = JsonConvert.DeserializeObject<KbToken>(received);
+            KbToken token = await JsonConvert.DeserializeObjectAsync<KbToken>(received);
             UpdateExpiresTime(token);
             return token;
         }
