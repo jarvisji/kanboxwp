@@ -159,9 +159,9 @@ namespace kanboxwp.Utils
         /// <param name="path"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public static async Task<KbListInfo> GetFileListAsync(string path, KbToken token)
+        public static Task<KbListInfo> GetFileListAsync(string path, KbToken token)
         {
-            return await GetFileListAsync(path, token, null);
+            return GetFileListAsync(path, token, null);
         }
 
         /// <summary>
@@ -286,9 +286,9 @@ namespace kanboxwp.Utils
             return received;
         }
 
-        private static async Task<string> doGetAsync(string url)
+        private static Task<string> doGetAsync(string url)
         {
-            return await doGetAsync(url, null);
+            return doGetAsync(url, null);
         }
 
         private static async Task<string> doGetAsync(string url, Dictionary<string, string> headers)
