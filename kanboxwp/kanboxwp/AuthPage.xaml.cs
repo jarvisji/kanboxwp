@@ -8,6 +8,7 @@ using kanboxwp.Entities;
 using Newtonsoft.Json;
 using System.Windows.Navigation;
 using System.Windows;
+using System.ComponentModel;
 
 
 namespace kanboxwp
@@ -41,6 +42,11 @@ namespace kanboxwp
         private void hbRefreshBrowser_Click(object sender, RoutedEventArgs e)
         {
             wb_auth.Navigate(new Uri(KBApiUtil.GetAuthCodeRequestUrl()));
-        }        
+        }
+
+        protected override void OnBackKeyPress(CancelEventArgs e)
+        {
+            App.Current.Terminate();
+        }
     }
 }
